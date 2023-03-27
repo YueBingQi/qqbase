@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <form>
+        <div>账号：<input name="account" type="text" placeholder="请输入账号"></div>
+        <div>密码：<input name="password" type="text" placeholder="请输入密码"></div>
+        <button type="button" onclick="login()">登录</button>
+    </form>
+    <script>
+        function login(){
+            $.ajax({
+                "url":"http://localhost:8080/login/",
+                "type":"GET",
+                "data":{"account":$('[name="account"]').val(),"password":$('[name="password"]').val()},
+                "datatype":"text",
+                "success":function (datas){
+                    alert(datas)
+                    if(datas=='100000'){
+                        alert("账号密码错误:"+datas)
+                    }else if (datas=='100004'){
+                        alert("错误代码100004")
+                    }
+                }
+                });
+        }
+    </script>
+</body>
+</html>
